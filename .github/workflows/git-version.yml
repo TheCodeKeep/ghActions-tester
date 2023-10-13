@@ -33,3 +33,5 @@ jobs:
         git push origin ${{ steps.gitversion.outputs.semVer }}
     - name: Call .NET Build Workflow
       uses: TheCodeKeep/ghActions-tester./github/workflows@main
+      with:
+        buildVersion: ${{ steps.gitversion.outputs.semVer }}
