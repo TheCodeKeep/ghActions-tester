@@ -25,5 +25,5 @@ jobs:
     - name: Tag repo
       run: |
         echo ${{ steps.gitversion.outputs.semVer }}
-        git tag v${{ steps.gitversion.outputs.semVer }}
-        git push origin $${{ steps.gitversion.outputs.semVer }}
+        git tag ${{ steps.gitversion.outputs.semVer }}
+        git push origin ${{ steps.gitversion.outputs.semVer }}
