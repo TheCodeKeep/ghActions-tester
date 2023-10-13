@@ -2,10 +2,7 @@ name: GitVersion Tag
 
 on:
   pull_request:
-    branches: [
-      "master",
-      "dev/master"
-    ]
+    branches: ["master", "dev/master"]
     types:
       - closed
 
