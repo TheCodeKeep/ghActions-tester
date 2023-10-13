@@ -1,5 +1,9 @@
 name: GitVersion Tag
 
+permissions:
+  id-token: write
+  contents: write
+
 on:
   push: 
     branches: ["dev/master", "master"]
