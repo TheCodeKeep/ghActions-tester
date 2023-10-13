@@ -1,15 +1,12 @@
 name: GitVersion Tag
 
 on:
-  pull_request:
-    branches: ["master", "dev/master"]
-    types:
-      - closed
+  push: 
+    branches: ["dev/master", "master"]
 
 jobs:
   calculate-version:
     name:  Calculate Version
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     outputs:
       semVer: ${{ steps.gitversion.outputs.semVer }}
