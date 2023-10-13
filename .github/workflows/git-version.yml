@@ -35,6 +35,6 @@ jobs:
         git tag ${{ steps.gitversion.outputs.semVer }}
         git push origin ${{ steps.gitversion.outputs.semVer }}
     - name: Call .NET Build Workflow
-      uses: .github/action/build-application
+      uses: ./.github/actions/build-application
       with:
         buildVersion: ${{ steps.gitversion.outputs.semVer }}
