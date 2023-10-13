@@ -2,6 +2,10 @@ name: GitVersion Tag
 
 on:
   pull_request:
+    branches: [
+      "master",
+      "dev/master"
+    ]
     types:
       - closed
 
@@ -24,3 +28,14 @@ jobs:
     - name: Calculate Version
       id: gitversion
       uses: gittools/actions/gitversion/execute@v0
+
+  display-semver:
+    name: Display Semantic Version
+    runs-on: ubuntu-latest
+    needs: calculate-version
+    env:
+      SEMVER: ${{ needs.calculate-version.outputs.semVer }}
+    steps:
+      - name: Display Version
+        run: |
+          echo SemVer: $SEMVER
