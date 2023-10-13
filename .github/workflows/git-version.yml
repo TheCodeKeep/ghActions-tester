@@ -1,0 +1,26 @@
+name: GitVersion Tag
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  calculate-version:
+    name:  Calculate Version
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    outputs:
+      semVer: ${{ steps.gitversion.outputs.semVer }}
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0
+      with:
+        versionSpec: '5.x'
+    - name: Calculate Version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0
