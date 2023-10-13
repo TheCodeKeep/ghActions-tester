@@ -8,6 +8,9 @@ on:
   push: 
     branches: ["dev/master", "master"]
 
+env:
+  branchname: ${{github.ref_name}}
+
 jobs:
   calculate-version:
     name:  Calculate Version
@@ -32,6 +35,6 @@ jobs:
         git tag ${{ steps.gitversion.outputs.semVer }}
         git push origin ${{ steps.gitversion.outputs.semVer }}
     - name: Call .NET Build Workflow
-      uses: TheCodeKeep/ghActions-tester/.github/workflows@main
+      uses: ./.github/action/build-application
       with:
         buildVersion: ${{ steps.gitversion.outputs.semVer }}
