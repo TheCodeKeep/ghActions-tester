@@ -1,0 +1,28 @@
+name: .NET Build
+
+on: 
+    workflow_call:
+        inputs:
+            buildVersion:
+                description: 'The builder version number used for the build artifact'
+                required: true
+                type: string
+
+jobs:
+    build:
+        name: Build .Net Application
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+              with:
+                fetch-depth: 0
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v3
+              with:
+                dotnet-version: 6.0.x
+            - name: Restore dependencies
+              run: dotnet restore
+            - name: Build
+              run: dotnet build --no-restore
+                
